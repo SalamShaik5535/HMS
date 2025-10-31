@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9669/realms/hms-realm/protocol/openid-connect/certs
   cloud:
     gateway:
       discovery:
@@ -20,7 +25,18 @@ spring:
           uri: http://localhost:9093
           predicates:
             - Path=/doctors/**
+        - id: appointment-service
+          uri: http://localhost:9094
+          predicates:
+            - Path=/appointment/**
+        - id: clinical-service
+          uri: http://localhost:9095
+          predicates:
+            - Path=/clicical/**
 eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
+
+
+

@@ -1,0 +1,26 @@
+server:
+  port: 9095
+
+spring:
+  application:
+    name: clinical-service
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/clinicaldb
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/hms-realm
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

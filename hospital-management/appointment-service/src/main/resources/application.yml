@@ -1,0 +1,29 @@
+server:
+  port: 9094
+spring:
+  application:
+    name: appointment-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306:salamdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/hms-realm  # Keycloak realm URL
+
+eureka:
+  client:
+    service-url:
+      default-zone: 8761
+# Kafka (optional)
+kafka:
+  bootstrap-servers: localhost:9092
+  topic:
+    appointment: appointment-events
